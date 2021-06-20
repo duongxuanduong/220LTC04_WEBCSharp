@@ -1,0 +1,58 @@
+﻿
+@model ModelEF.Model.tbl_category
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <i class="fa fa-save">&nbsp; Thêm Danh Mục</i>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="col-lg-12 form-group">
+            <div class="col-md-6">
+                @Html.ActionLink("Quay Lại", "Index", "Category", new { @class = "btn btn-danger" })
+            </div>
+        </div>
+        <div class="col-lg-12 form-group">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2" for="brand_name">Tên Loại sản phẩm</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mời nhập danh mục" } })
+                    @Html.ValidationMessageFor(model => model.category_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="brand_name">Mô Tả</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.category_des, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mời nhập mô tả" } })
+                    @Html.ValidationMessageFor(model => model.category_des, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="brand_name">Trạng Thái</label>
+                <div class="col-md-10">
+                    <div class="col-md-10">
+                        <select id="brand_status" name="category_status" class="form-control">
+                            <option value="1">Hiển thị</option>
+                            <option value="0">Ẩn</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Thêm" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

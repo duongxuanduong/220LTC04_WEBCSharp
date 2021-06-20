@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ModelEF.Model.tbl_order_detail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Đơn Hàng
+            </th>
+            <th>
+                Sản Phẩm
+            </th>
+            <th>
+                Ảnh
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.product_price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.product_quantity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ var i = 1;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @i;
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.order_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_quantity)
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>

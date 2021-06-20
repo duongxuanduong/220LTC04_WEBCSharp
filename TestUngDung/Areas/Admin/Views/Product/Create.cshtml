@@ -1,0 +1,125 @@
+﻿@model ModelEF.Model.tbl_product
+@{
+    //var category = (List<ModelEF.Model.tbl_category>)ViewBag.Category;
+    //var brand = (List<ModelEF.Model.tbl_brand>)ViewBag.Brand;
+    ViewBag.Title = "Thêm Sản Phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <i class="fa fa-save">&nbsp; Thêm Sản Phẩm</i>
+}
+@using (Html.BeginForm("Create", "Product", FormMethod.Post,
+    new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="col-lg-12 form-group">
+            <div class="col-md-6">
+                @Html.ActionLink("Quay Lại", "Index", "Product", new { @class = "btn btn-danger" })
+            </div>
+        </div>
+        <div class="col-lg-12 form-group">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="hidden" class="form-control" id="product_id" name="product_id " disabled />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <label class="control-label col-md-2" for="brand_name">Hãng</label>
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.brand_id, null, new { @class = "select2 form-control", required = "required" })
+                            @Html.ValidationMessageFor(model => model.brand_id, "", new { @class = "text-danger" })
+                        </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label class="control-label col-md-2" for="brand_name">Loại Sản Phẩm</label>
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.category_id, null, new { @class = "select2 form-control", required = "required" })
+                                @Html.ValidationMessageFor(model => model.category_id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label class="control-label col-md-2" for="brand_name">Tên Sản Phẩm</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.product_name, new { @class = "form-control", @placeholder = "Mời nhập tên sản phẩm", required = "required" })
+                                @Html.ValidationMessageFor(model => model.product_name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label class="control-label col-md-2" for="brand_name">Mô tả</label>
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.product_des, new { @class = "form-control", @placeholder = "Mời nhập mô tả sản phẩm", required = "required" })
+                                @Html.ValidationMessageFor(model => model.product_des, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label class="control-label col-md-2" for="brand_name">Số lượng</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.product_quantity, new { @class = "form-control", @placeholder = "Mời nhập số lượng sản phẩm", @type = "number", required = "required" })
+                                @Html.ValidationMessageFor(model => model.product_quantity, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label class="control-label col-md-2" for="brand_name">Giá</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.product_price, new { @class = "form-control", @placeholder = "Mời nhập giá sản phẩm", @type = "number", required = "required" })
+                                @Html.ValidationMessageFor(model => model.product_price, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label class="control-label col-md-2" for="brand_name">Chọn ảnh</label>
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.product_image, new { @class = "form-control", required = "required", @type = "file" })
+                                @Html.ValidationMessageFor(model => model.product_image, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label class="control-label col-md-2" for="brand_name">Trạng thái</label>
+                            <div class="col-md-10">
+                                @Html.DropDownList("product_status", new List<SelectListItem>
+                                {
+                                    new SelectListItem { Text = "Hiện thị", Value = "1", Selected = true},
+                                    new SelectListItem { Text = "Ẩn", Value = "0"},
+                                }, new { @class = "form-control", required = "required" })
+                                @*<select id="product_status" name="product_status" class="form-control">
+                                    <option value="1">Hiển Thị</option>
+                                    <option value="0">Ẩn</option>
+                                </select>*@
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit"> Lưu </button>
+                </div>
+    </div>
+}
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
+
+}

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ModelEF.Model.tbl_order_detail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <i class="fa fa-user">&nbsp; Chi tiết Đơn Hàng</i>
+}
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Đơn Hàng
+            </th>
+            <th>
+                Sản Phẩm
+            </th>
+            <th>
+                Ảnh
+            </th>
+            <th>
+                Gía bán
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ var i = 1;}
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @i
+            </td>
+            <td>
+                ĐH-@item.order_id
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.product_name)
+            </td>
+            <td>
+                <img style="width:50px;height:50px" src="~/Upload/sanpham/@item.product_image" />
+            </td>
+            <td>
+                @item.product_price.ToString("#,##0") VNĐ
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.product_quantity)
+            </td>
+            <td>
+                @Decimal.Multiply(item.product_quantity, item.product_price).ToString("#,##0") VNĐ
+            </td>
+        </tr>
+          i++;
+      }
+    </tbody>
+</table>

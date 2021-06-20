@@ -1,0 +1,68 @@
+﻿@model ModelEF.Model.tbl_category
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <i class="fa fa-save">&nbsp; Cập nhật danh mục</i>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <div class="col-lg-12 form-group">
+        <div class="col-md-6">
+            @Html.ActionLink("Quay Lại", "Index", "Category", new { @class = "btn btn-danger" })
+        </div>
+    </div>
+    <div class="col-lg-12 form-group">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.category_id)
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="brand_name">Tên Loại sản phẩm</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.category_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.category_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="brand_name">Mô tả</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.category_des, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.category_des, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="brand_name">Trạng Thái</label>
+            <div class="col-md-10">
+                <select id="category_status" name="category_status" class="form-control">
+                    @if (Model.category_status == 1)
+                    {
+                        <option selected value="1">Hiển Thị</option>
+                        <option value="0">Ẩn</option>
+                    }
+                    @if (Model.category_status == 0)
+                    {
+                        <option value="1">Hiển Thị</option>
+                        <option selected value="0">Ẩn</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>
+    }
+

@@ -1,0 +1,97 @@
+﻿@model ModelEF.Model.tbl_product
+
+@{
+    ViewBag.Title = "Cập nhật sản phẩm";
+    var category = (List<ModelEF.Model.tbl_category>)ViewBag.Category;
+    var brand = (List<ModelEF.Model.tbl_brand>)ViewBag.Brand;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section header{
+    <i class="fa fa-save">&nbsp; Cập nhật sản phẩm</i>
+}
+
+
+    <div class="form-horizontal">
+        <div class="col-lg-12 form-group">
+            <div class="col-md-6">
+                @Html.ActionLink("Quay Lại", "Index", "Product", new { @class = "btn btn-danger" })
+            </div>
+        </div>
+        <div class="col-lg-12 form-group">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>
+                        Hãng:
+                        @foreach (var item in brand)
+                        {
+                            if (@item.brand_id == @Model.brand_id)
+                            {
+                                @item.brand_name
+                            }
+                        }
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>
+                        Loại sản phẩm:
+                        @foreach (var rs_cat in category)
+                        {
+                            if (rs_cat.category_id == Model.category_id)
+                            {
+                                @rs_cat.category_name
+                            }
+
+                        }
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>Tên Sản Phẩm: @Model.product_name</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>Mô tả:  @Model.product_des</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>Giá: @Model.product_price</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>Số lượng: @Model.product_quantity</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>Hình Ảnh</label>
+                    <img style="width:50px;height:50px" src="~/Upload/sanpham/@Model.product_image" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>
+                        Trạng Thái:
+                        @if (Model.product_status == 1)
+                        {
+                            <span>Hiện thị</span>
+                        }
+                        @if (Model.product_status == 0)
+                        {
+                            <span>Ẩn</span>
+                        }
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

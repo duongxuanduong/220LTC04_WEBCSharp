@@ -1,0 +1,59 @@
+﻿@model ModelEF.Model.tbl_brand
+
+@{
+    ViewBag.Title = "Thêm Thương Hiệu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <i class="fa fa-save">&nbsp; Thêm Thương Hiệu</i>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <div class="col-lg-12 form-group">
+        <div class="col-md-6">
+            @Html.ActionLink("Quay Lại", "Index", "Brand", new { @class = "btn btn-danger" })
+        </div>
+    </div>
+    <div class="col-lg-12 form-group">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <a href="~/Areas/Admin/Views/Brand/Index.cshtml"></a>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="brand_name">Tên Hãng</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.brand_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mời nhập tên thương hiệu" } })
+                @Html.ValidationMessageFor(model => model.brand_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="brand_name">Mô tả</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.brand_des, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mời nhập mô tả" } })
+                @Html.ValidationMessageFor(model => model.brand_des, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="brand_name">Trạng thái</label>
+            <div class="col-md-10">
+                <select id="brand_status" name="brand_status" class="form-control">
+                    <option value="1">Hiển thị</option>
+                    <option value="0">Ẩn</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>
+    }
+

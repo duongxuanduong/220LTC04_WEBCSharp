@@ -1,0 +1,139 @@
+﻿@model ModelEF.Model.tbl_product
+
+@{
+    ViewBag.Title = "Cập nhật sản phẩm";
+    var category = (List<ModelEF.Model.tbl_category>)ViewBag.Category;
+    var brand = (List<ModelEF.Model.tbl_brand>)ViewBag.Brand;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section header{
+    <i class="fa fa-save">&nbsp; Cập nhật sản phẩm</i>
+}
+
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post,
+    new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="col-lg-12 form-group">
+            <div class="col-md-6">
+                @Html.ActionLink("Quay Lại", "Index", "Product", new { @class = "btn btn-danger" })
+            </div>
+        </div>
+        <div class="col-lg-12 form-group">
+            <form action="/Product/Edit" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="hidden" class="form-control" value="@Model.product_id" id="product_id" name="product_id" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <label>Hãng</label>
+                        <select id="brand_id" name="brand_id" class="select2 form-control">
+                            @foreach (var item in brand)
+                            {
+                                if (@item.brand_id == @Model.brand_id)
+                                {
+                                    <option selected value="@item.brand_id">@item.brand_name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.brand_id">@item.brand_name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <label>Loại sản phẩm</label>
+                        <select id="category_id" name="category_id" class="select2 form-control">
+                            @foreach (var rs_cat in category)
+                            {
+                                if (rs_cat.category_id == Model.category_id)
+                                {
+                                    <option selected value="@rs_cat.category_id">@rs_cat.category_name</option>
+                                }
+                                else
+                                {
+                                    <option value="@rs_cat.category_id">@rs_cat.category_name</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <label>Tên Sản Phẩm</label>
+                        <input type="text" class="form-control" value="@Model.product_name" id="product_name" name="product_name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <label>Mô tả</label>
+                        <textarea asp-for="summernote" name="product_des" id="summernote">
+                            @Model.product_des
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <label>Giá</label>
+                        <input type="text" class="form-control" value="@Model.product_price" id="product_price" name="product_price" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <label>Số lượng</label>
+                        <input type="text" class="form-control" value="@Model.product_quantity" id="product_quantity" name="product_quantity" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <label>Hình Ảnh</label>
+                        <img style="width:50px;height:50px" src="~/Upload/sanpham/@Model.product_image" />
+                        <input type="file" id="product_image" name="product_image" accept="image/*" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <label>Trạng Thái</label>
+                        <select id="product_status" name="product_status">
+                            @if (Model.product_status == 1)
+                            {
+                                <option selected value="1">Hiển Thị</option>
+                                <option value="0">Ẩn</option>
+                            }
+                            @if (Model.product_status == 0)
+                            {
+                                <option value="1">Hiển Thị</option>
+                                <option selected value="0">Ẩn</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit"> Lưu </button>
+            </form>
+        </div>
+    </div>
+}
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
+
+}
+

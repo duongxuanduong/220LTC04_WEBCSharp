@@ -1,0 +1,130 @@
+﻿
+@using PagedList.Mvc;
+@model PagedList.IPagedList<ModelEF.Model.tbl_customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <i class="fa fa-user">&nbsp; Quản Lý Khách Hàng</i>
+}
+
+@using (Html.BeginForm("Index", "Customer", FormMethod.Post))
+{
+    <div class="col-md-6">
+        @Html.ActionLink("Tạo mới", "Create", "Customer", new { @class = "btn btn-primary" })
+    </div>
+}
+@using (Html.BeginForm("Index", "Customer", FormMethod.Post))
+{
+    <div class="col-lg-12 form-group">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-4">
+            <input type="text" value="@ViewBag.searchString" name="searchString" placeholder="Nhập từ khóa tìm kiếm" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <input type="submit" vaule="Tìm kiếm" class="btn btn-default" />
+        </div>
+    </div>
+}
+<div class="col-lg-12 form-group">
+    <table class="table display nowrap" id="myTable1">
+        <thead>
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    Tên Khách Hàng
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Trạng thái
+                </th>
+                <th>
+                    Số Điện Thoại
+                </th>
+                <th>Hành Động</th>
+            </tr>
+        <thead>
+        <tbody>
+            @{ var i = 1;}
+            @foreach (var item in Model)
+            {
+            <tr id="row_@item.customer_id">
+                <td>
+                    @i
+                </td>
+                <td>
+                    @item.customer_name
+                </td>
+                <td>
+                    @item.customer_email
+                </td>
+                @if (@item.customer_status == 1)
+                {
+                    <td>
+                        Bị Khóa
+                    </td>
+                }
+                @if (@item.customer_status == 0)
+                {
+                <td>
+                    Bình Thường
+                </td>
+                }
+                <td>
+                    @item.customer_phone
+                </td>
+                    <td>
+                        <a onclick="PopupDelete(@item.customer_id)">Xóa</a>
+                    </td>
+                </tr>
+                i++;
+            }
+        <tbody>
+    </table>
+    @Html.PagedListPager(Model, page => Url.Action("index", new { page }))
+</div>
+<script>
+    function PopupDelete(id) {
+        Swal.fire({
+            title: 'Bạn có chắc chắn xóa khách hàng này không',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: 'Hủy',
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Customer/Delete",
+                    data: { id: id },
+                    success: function (result) {
+                        if (result) {
+                            Swal.fire(
+                                'Thành Công!',
+                                'Bạn đã xóa thành công',
+                                'success'
+                            );
+                            $("#row_" + id).remove();
+                        } else {
+                            Swal.fire(
+                                'Thất bại!',
+                                'Chỉ xóa được khách hàng bị block',
+                                'error'
+                            );
+                        }
+                    }
+                })
+
+            }
+        })
+    }
+</script>

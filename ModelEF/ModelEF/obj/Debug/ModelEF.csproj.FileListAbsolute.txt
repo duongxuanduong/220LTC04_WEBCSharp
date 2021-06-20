@@ -1,0 +1,17 @@
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\obj\Debug\ModelEF.csprojAssemblyReference.cache
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\obj\Debug\ModelEF.csproj.CoreCompileInputs.cache
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\ModelEF.dll.config
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\ModelEF.dll
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\ModelEF.pdb
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\EntityFramework.dll
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\EntityFramework.xml
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\obj\Debug\ModelEF.csproj.CopyComplete
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\obj\Debug\ModelEF.dll
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\obj\Debug\ModelEF.pdb
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\NotFoundMvc.dll
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\PagedList.dll
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\PagedList.Mvc.dll
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\PagedList.xml
+C:\Users\DXD\Desktop\DuongXuanDuong\ModelEF\ModelEF\bin\Debug\PagedList.Mvc.xml

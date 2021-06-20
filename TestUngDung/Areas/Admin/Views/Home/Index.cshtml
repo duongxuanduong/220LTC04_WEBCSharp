@@ -1,0 +1,63 @@
+﻿
+@{
+    var order = (List<ModelEF.Model.tbl_order>)ViewBag.Order;
+    var customer = (List<ModelEF.Model.tbl_customer>)ViewBag.Customer;
+    var product = (List<ModelEF.Model.tbl_product>)ViewBag.Product;
+    ViewBag.Title = "Trang Quản Trị";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+<i class="fa fa-home">&nbsp;Trang Quản Trị</i>    
+    }
+Chào mừng bạn đến với trang quản trị
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card p-3 mb-2">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="icon"> <i class="fa fa-shopping-cart"></i> </div>
+                    </div>
+                    <div class="badge"> <span>Đơn Hàng</span> </div>
+                </div>
+                <div class="mt-5">
+                    <h3 class="heading">Số lượng đơn hàng</h3>
+                    <div class="mt-5">
+                        <div class="mt-3"> <h2 class="text1">@order.Count()</h2> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 mb-2">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="icon"> <i class="fa fa-shopping-cart"></i> </div>
+                    </div>
+                    <div class="badge"> <span>Sản phẩm</span> </div>
+                </div>
+                <div class="mt-5">
+                    <h3 class="heading">Số lượng sản phẩm</h3>
+                    <div class="mt-5">
+                        <div class="mt-3"> <h2 class="text1">@product.Count()</h2> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 mb-2">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="icon"> <i class="fa fa-shopping-cart"></i> </div>
+                    </div>
+                    <div class="badge"> <span>Khách hàng</span> </div>
+                </div>
+                <div class="mt-5">
+                    <h3 class="heading">Số lượng khách hàng</h3>
+                    <div class="mt-5">
+                        <div class="mt-3"> <h2 class="text1">@customer.Count()</h2> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
